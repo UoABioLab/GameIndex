@@ -17,6 +17,26 @@
             align-items: center;
             padding: 20px;
         }
+
+        .logo-section {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 20px;  /* logo之间的间距 */
+            padding: 20px;
+            background-color: white;
+            position: fixed;
+            bottom: 80px;  /* 调整这个值可以改变与页脚的距离 */
+            left: 20px;
+        }
+
+        .logo-section img {
+            height: 50px;  /* 调整logo大小 */
+            width: auto;
+            object-fit: contain;
+        }
+
+        
         .row {
             display: flex;
             justify-content: center;
@@ -86,7 +106,7 @@
         
         /* 防止页脚遮挡内容 */
         .container {
-            margin-bottom: 100px;
+            margin-bottom: 160px;
         }
     </style>
 </head>
@@ -138,6 +158,14 @@
             </div>
         </div>
     </div>
+
+     <!-- 添加logo部分 -->
+    <div class="logo-section">
+        <img src="images/selwyn.png" alt="SelwynFoundation">
+        <img src="images/uoa.png" alt="UoA">
+        <img src="images/bio.png" alt="BiomechanicsLab">
+    </div>
+    
     <!-- 添加页脚 -->
     <footer class="footer">
         <div class="footer-content">
