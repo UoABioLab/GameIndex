@@ -22,21 +22,20 @@
             display: flex;
             justify-content: flex-start;
             align-items: center;
-            gap: 20px;  /* logo之间的间距 */
+            gap: 20px;
             padding: 20px;
             background-color: #f0f0f0;
             position: fixed;
-            bottom: 80px;  /* 调整这个值可以改变与页脚的距离 */
+            bottom: 80px;
             left: 20px;
         }
 
         .logo-section img {
-            height: 50px;  /* 调整logo大小 */
+            height: 50px;
             width: auto;
             object-fit: contain;
         }
 
-        
         .row {
             display: flex;
             justify-content: center;
@@ -84,14 +83,14 @@
         }
 
         .footer {
-                    background-color: #333;
-                    color: #fff;
-                    padding: 15px;
-                    text-align: center;
-                    position: fixed;
-                    bottom: 0;
-                    width: 100%;
-                    font-size: 16px;
+            background-color: #333;
+            color: #fff;
+            padding: 15px;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            font-size: 16px;
         }
 
         .footer-content {
@@ -103,10 +102,22 @@
         .footer p {
             margin: 5px 0;
         }
-        
+
         /* 防止页脚遮挡内容 */
         .container {
             margin-bottom: 160px;
+        }
+
+        /* 添加访问次数定位样式 */
+        #visit-counter {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            padding: 5px 10px;
+            background: #f0f0f0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            z-index: 1000;
         }
     </style>
 </head>
@@ -159,14 +170,16 @@
         </div>
     </div>
 
-     <!-- 添加logo部分 -->
+    <!-- 添加logo部分 -->
     <div class="logo-section">
-       
         <img src="images/UoA.png" alt="University of Auckland">
         <img src="images/BiomechanicsLab.png" alt="Biomechanics Lab">
         <img src="images/SelwynFundation.png" alt="Selwyn Fundation">
     </div>
-    
+
+    <!-- 添加访问次数 -->
+    <div id="visit-counter">访问次数: 加载中...</div>
+
     <!-- 添加页脚 -->
     <footer class="footer">
         <div class="footer-content">
@@ -174,10 +187,24 @@
             <p>Research Project | Biomechanics Lab</p>
         </div>
     </footer>
+
     <script>
         function redirectTo(description) {
             window.location.href = `https://uoabiolab.github.io/${description}/`;
         }
+
+        // 页面加载时获取访问次数
+        window.onload = function() {
+            fetch('https://8.138.167.96/visit-count', { credentials: 'include' })
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('visit-counter').innerText = `访问次数: ${data.count}`;
+                })
+                .catch(error => {
+                    console.error('Error fetching visit count:', error);
+                    document.getElementById('visit-counter').innerText = '访问次数: 错误';
+                });
+        };
     </script>
 </body>
 </html>
