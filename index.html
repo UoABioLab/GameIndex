@@ -178,7 +178,7 @@
     </div>
 
     <!-- 添加访问次数 -->
-    <div id="visit-counter">访问次数: 加载中...</div>
+    <div id="visit-counter">Visit Count: Loading...</div>
 
     <!-- 添加页脚 -->
     <footer class="footer">
@@ -198,11 +198,11 @@
             fetch('https://8.138.167.96/visit-count', { credentials: 'include' })
                 .then(response => response.json())
                 .then(data => {
-                    document.getElementById('visit-counter').innerText = `访问次数: ${data.count}`;
+                    document.getElementById('visit-counter').innerText = `Visit Count: ${data.count}`;
                 })
                 .catch(error => {
                     console.error('Error fetching visit count:', error);
-                    document.getElementById('visit-counter').innerText = '访问次数: 错误';
+                    document.getElementById('visit-counter').innerText = 'Visit Count: Error';
                 });
         };
     </script>
