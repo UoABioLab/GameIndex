@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clickable Images</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        .language-switch {
+            text-align: center;
+            margin: 20px;
+            font-size: 30px;
+            font-weight: bold;
+            font-weight: bold;
+        }
+
+        #language-select {
+            padding: 5px 10px;
+            font-size: 30px;
+            font-weight:bold;
+            margin-left: 10px;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .logo-section {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 20px;
+            padding: 20px;
+            background-color: #f0f0f0;
+            position: fixed;
+            bottom: 80px;
+            left: 20px;
+        }
+
+        .logo-section img {
+            height: 50px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .row {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+        .image-container {
+            width: 260px;
+            height: 260px;
+            border: 2px solid #333;
+            margin: 0px 60px;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .image-container:hover {
+            transform: scale(1.1);
+            cursor: pointer;
+        }
+        .description {
+            text-align: center;
+            font-size: 30px;
+            color: #333;
+            width: 260px;
+            margin: 10px auto;
+        }
+        .image-text-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 10px 100px;
+        }
+        .image-text-container.reversed {
+            flex-direction: column-reverse;
+        }
+        h1 {
+            text-align: center;
+            font-size: 50px;
+            color: #333;
+            margin-top: 20px;
+        }
+
+        .footer {
+            background-color: #333;
+            color: #fff;
+            padding: 15px;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            font-size: 16px;
+        }
+
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.5;
+        }
+
+        .footer p {
+            margin: 5px 0;
+        }
+
+        /* 防止页脚遮挡内容 */
+        .container {
+            margin-bottom: 160px;
+        }
+
+        /* 添加访问次数定位样式 */
+        #visit-counter {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            padding: 5px 10px;
+            background: #f0f0f0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="main-title">Balance Exergames</h1>
+    <div class="language-switch">
+        <label for="language-select">Language / 语言: </label>
+        <select id="language-select" onchange="setLanguage(this.value)">
+          <option value="en">English</option>
+          <option value="zh">中文</option>
+        </select>
+      </div>
+    <div class="container">
+        <div class="row">
+            <div class="image-text-container">
+                <div class="image-container">
+                    <a href="#" onclick="redirectTo('FruitCuttingMasterTest')">
+                        <img src="images/1.png" alt="Image 1">
+                    </a>
+                </div>
+                <p class="description" id="fruit">FruitCuttingMaster</p>
+            </div>
+            <div class="image-text-container">
+                <div class="image-container">
+                    <a href="#" onclick="redirectTo('BubblePopKungFuTest')">
+                        <img src="images/2.png" alt="Image 2">
+                    </a>
+                </div>
+                <p class="description" id="bubble">BubblePopKungFu</p>
+            </div>
+            <div class="image-text-container">
+                <div class="image-container">
+                    <a href="#" onclick="redirectTo('MarineAdventureTest')">
+                        <img src="images/3.png" alt="Image 3">
+                    </a>
+                </div>
+                <p class="description" id="marine">MarineAdventure</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="image-text-container reversed">
+                <p class="description" id="star">StarCatcher</p>
+                <div class="image-container">
+                    <a href="#" onclick="redirectTo('StarCatcher')">
+                        <img src="images/4.png" alt="Image 4">
+                    </a>
+                </div>
+            </div>
+            <div class="image-text-container reversed">
+                <p class="description" id="step">SteppingMaster</p>
+                <div class="image-container">
+                    <a href="#" onclick="redirectTo('SteppingMasterTest')">
+                        <img src="images/5.png" alt="Image 5">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 添加logo部分 -->
+    <div class="logo-section">
+        <img src="images/UoA.png" alt="University of Auckland">
+        <img src="images/BiomechanicsLab.png" alt="Biomechanics Lab">
+        <img src="images/SelwynFundation.png" alt="Selwyn Fundation">
+    </div>
+
+    <!-- 添加访问次数 -->
+    <div id="visit-counter">Visit Count: Loading...</div>
+
+    <!-- 添加页脚 -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>© 2024 Exercise Science Department, University of Auckland</p>
+            <p>Research Project | Biomechanics Lab</p>
+        </div>
+    </footer>
+
+    <script>
+        
+        const translations = {
+        en: {
+            title: "Balance Exergames",
+            fruit: "FruitCuttingMaster",
+            bubble: "BubblePopKungFu",
+            marine: "MarineAdventure",
+            star: "StarCatcher",
+            step: "SteppingMaster",
+            footer1: "© 2024 Exercise Science Department, University of Auckland",
+            footer2: "Research Project | Biomechanics Lab"
+        },
+        zh: {
+            title: "平衡运动游戏",
+            fruit: "水果切割大师",
+            bubble: "泡泡功夫",
+            marine: "海底历险记",
+            star: "星星捕手",
+            step: "节奏大师",
+            footer1: "© 2024 奥克兰大学 运动科学系",
+            footer2: "研究项目 | 生物力学实验室"
+        }
+    };
+
+        function setLanguage(lang) {
+            localStorage.setItem('language', lang); // 👉 保存语言到 localStorage
+            document.getElementById('language-select').value = lang;
+
+            const t = translations[lang];
+            document.getElementById('main-title').innerText = t.title;
+            document.getElementById('fruit').innerText = t.fruit;
+            document.getElementById('bubble').innerText = t.bubble;
+            document.getElementById('marine').innerText = t.marine;
+            document.getElementById('star').innerText = t.star;
+            document.getElementById('step').innerText = t.step;
+            document.getElementById('footer1').innerText = t.footer1;
+            document.getElementById('footer2').innerText = t.footer2;
+        }
+
+        // function redirectTo(description) {
+        //     // 判断是否本地
+        //     const isLocal = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
+
+        //     if (isLocal) {
+        //         // 本地调试用相对路径跳转
+        //         window.location.href = `./${description}Build/index.html`;
+        //     } else {
+        //         // 线上部署用 GitHub Pages 路径
+        //         window.location.href = `https://uoabiolab.github.io/${description}/`;
+        //     }
+            
+        // }
+
+        // function redirectTo(description) {
+        //     // 判断是否本地
+        //     const isLocal = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
+
+        //     // 特例处理：如果是 StarCatcherTest，就直接跳转到 StarCatcher
+        //     let folderName = description === 'StarCatcherTest' ? 'StarCatcher' : `${description}Build`;
+
+        //     const targetFolder = `${description}Build`;
+
+        //     const targetURL = isLocal
+        //         ? `/${targetFolder}/index.html`
+        //         : `https://uoabiolab.github.io/${targetFolder}/`;
+
+        //     // ✅ 打印跳转路径
+        //     console.log("跳转路径:", targetURL);
+
+        //     window.location.href = targetURL;
+        // }
+
+        function redirectTo(description) {
+            const isLocal = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
+
+            let folderName;
+            if (description === 'StarCatcher') {
+                folderName = 'StarCatcher';
+            } else {
+                folderName = `${description}Build`;
+            }
+
+            const targetURL = isLocal
+                ? `/${folderName}/index.html`
+                : `https://uoabiolab.github.io/${folderName}/`;
+
+            console.log("跳转路径:", targetURL);
+            window.location.href = targetURL;
+        }
+
+        // 页面加载时获取访问次数
+        window.onload = function() {
+            fetch('https://8.138.167.96/visit-count', { credentials: 'include' })
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('visit-counter').innerText = `Visit Count: ${data.count}`;
+                })
+                .catch(error => {
+                    console.error('Error fetching visit count:', error);
+                    document.getElementById('visit-counter').innerText = 'Visit Count: Error';
+                });
+        };
+    </script>
+</body>
+</html>
